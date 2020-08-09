@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BCrypt.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +42,32 @@ namespace RecipeVault.Controllers
             return user;
         }
 
+        // POST: api/Users/AuthUser
+        [HttpPost("AuthUser")]
+        public ActionResult<User> AuthUser(User user)
+        {
+            User authUser;
+            try
+            {
+                authUser = _context.Users.First(row => row.Username == user.Username);
+                bool passwordMatches = BCrypt.Net.BCrypt.Verify(user.Password, authUser.Password);
+                if (passwordMatches)
+                {
+                    return authUser;
+                } else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                authUser = null;
+            }
+
+            return authUser;
+        }
+
+
         // PUT: api/Users/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -52,6 +79,7 @@ namespace RecipeVault.Controllers
                 return BadRequest();
             }
 
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
             _context.Entry(user).State = EntityState.Modified;
 
             try
@@ -79,6 +107,7 @@ namespace RecipeVault.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeVault.Models;
 
 namespace RecipeVault.Migrations
 {
     [DbContext(typeof(RecipeVaultContext))]
-    partial class RecipeVaultContextModelSnapshot : ModelSnapshot
+    [Migration("20200809225002_Updated_User")]
+    partial class Updated_User
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

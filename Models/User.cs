@@ -17,7 +17,7 @@ namespace RecipeVault.Models
         public string Username { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(25)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Password { get; set; }
     }
 }
