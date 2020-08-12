@@ -16,3 +16,21 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+a:hover {
+  color: #d5d0d0;
+  text-decoration: none;
+}
+
+a {
+    margin-right: 1rem;
+    color: #fff;
+}
+
+mat-toolbar {
+    margin-bottom: 1rem;
+}
