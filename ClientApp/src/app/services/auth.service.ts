@@ -16,4 +16,12 @@ export class AuthService {
   logout() {
 
   }
+
+  registerUser(newUser: User) {
+    return this.http.post(this.rootURL + '/Users', newUser);
+  }
+
+  getUserByUsername(username: string) {
+    return this.http.get(this.rootURL + '/Users/GetUserByUsername/' + username);
+  }
 }

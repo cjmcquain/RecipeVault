@@ -67,6 +67,22 @@ namespace RecipeVault.Controllers
             return authUser;
         }
 
+        [HttpGet("GetUserByUsername/{username}")]
+        public async Task<ActionResult<User>> GetUserByUsername(string username)
+        {
+            User result;
+            try
+            {
+                result = await _context.Users.FirstAsync(row => row.Username == username);
+                return result;
+            }
+            catch
+            {
+                result = null;
+            }
+            return result;
+        }
+
 
         // PUT: api/Users/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -134,5 +150,7 @@ namespace RecipeVault.Controllers
         {
             return _context.Users.Any(e => e.UserID == id);
         }
+
+
     }
 }

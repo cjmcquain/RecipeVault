@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { User } from '../models/user';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
-    styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [AuthService]
 })
 /** register component*/
 export class RegisterComponent {
@@ -14,7 +16,7 @@ export class RegisterComponent {
   confirmedPassword: string;
   errors: string[] = [];
 
-  constructor() {
+  constructor(private authService: AuthService) {
 
   }
 
@@ -28,16 +30,6 @@ export class RegisterComponent {
   }
 
   registerUser() {
-    console.log('Username: ' + this.newUser.username);
-    console.log('Password: ' + this.newUser.password);
-    console.log('Confirmed Password: ' + this.confirmedPassword);
-    if (this.newUser.password == this.confirmedPassword) {
-      console.log('Passwords match!');
-    } else {
-      this.errors.push('Passwords do not match.');
-    }
-
-
     if (this.newUser.username == '' || this.newUser.password == '' || this.confirmedPassword == '') {
       this.errors.push('All fields are required.');
     } else if (this.newUser.username.length > 25) {
@@ -46,6 +38,23 @@ export class RegisterComponent {
       this.errors.push('Password must be less than 100 characters.');
     } else if (this.confirmedPassword.length > 100) {
       this.errors.push('Confirmed password must be less than 100 characters.');
-    } else if ()
+    } else if (this.newUser.password != this.confirmedPassword) {
+      this.errors.push('Passwords do not match.');
+    } else {
+      this.authService.getUserByUsername(this.newUser.username).subscribe(res => {
+        if (res) {
+          this.errors.push('Username already exists.');
+          return;
+        } else {
+          this.authService.registerUser(this.newUser).subscribe(res => {
+            if (res) {
+              console.log('User successfully created.');
+            } else {
+              console.log('Error creating user');
+            }
+          });
+        }
+      });
+    }
   }
 }
