@@ -12,6 +12,11 @@ namespace RecipeVault.Models
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasIndex(p => new { p.Username }).IsUnique(true);
+        }
+
         public DbSet<User> Users { get; set; }
     }
 }

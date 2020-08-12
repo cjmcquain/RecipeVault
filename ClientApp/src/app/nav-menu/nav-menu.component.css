@@ -2,6 +2,7 @@ a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  font-size: 1.5rem;
 }
 
 html {
@@ -27,7 +28,6 @@ a:hover {
 }
 
 a {
-    margin-right: 1rem;
     color: #fff;
 }
 
