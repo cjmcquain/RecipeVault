@@ -16,7 +16,7 @@ export class NavMenuComponent {
   }
 
   ngOnInit() {
-    this.currentUser = sessionStorage.getItem('currentUser');
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   }
 
   logout() {

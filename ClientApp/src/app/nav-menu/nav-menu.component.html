@@ -9,7 +9,8 @@
       <a mat-button [routerLinkActive]="['link-active']" [routerLink]="['/']">Home</a>
       <a *ngIf="!currentUser" mat-button [routerLink]="['/register']">Register</a>
       <a *ngIf="!currentUser" mat-button [routerLink]="['/login']">Login</a>
-      <a *ngIf="currentUser" mat-button [routerLink]="['/logout']" (click)="logout()">Logout</a>
+      <a *ngIf="currentUser" mat-button (click)="logout()">Logout</a>
+      <a *ngIf="currentUser" mat-button>Logged in as: {{currentUser.username}}</a>
     </div>
 
   </mat-toolbar>
