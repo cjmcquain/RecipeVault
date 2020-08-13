@@ -12,7 +12,11 @@ export class NavMenuComponent {
   currentUser: User;
 
   constructor(private authService: AuthService) {
-    this.currentUser = this.authService.currentUser;
+    
+  }
+
+  ngOnInit() {
+    this.currentUser = sessionStorage.getItem('currentUser');
   }
 
   logout() {

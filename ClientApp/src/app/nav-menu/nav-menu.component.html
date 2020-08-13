@@ -7,9 +7,9 @@
 
     <div class="nav-links">
       <a mat-button [routerLinkActive]="['link-active']" [routerLink]="['/']">Home</a>
-      <a mat-button [routerLink]="['/register']">Register</a>
-      <a mat-button [routerLink]="['/login']">Login</a>
-      <a mat-button [routerLink]="['/logout']" (click)="logout()">Logout</a>
+      <a *ngIf="!currentUser" mat-button [routerLink]="['/register']">Register</a>
+      <a *ngIf="!currentUser" mat-button [routerLink]="['/login']">Login</a>
+      <a *ngIf="currentUser" mat-button [routerLink]="['/logout']" (click)="logout()">Logout</a>
     </div>
 
   </mat-toolbar>

@@ -1,1 +1,23 @@
-﻿<div style="border: 1px solid red">login Component</div>
+<mat-card>
+  <mat-card-title class="text-center">Login</mat-card-title>
+  <mat-card-content>
+    <form autocomplete="off" (submit)="loginUser()">
+      <mat-form-field class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput name="username" type="text" [(ngModel)]="user.username" required />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput name="password" type="password" [(ngModel)]="user.password" required />
+      </mat-form-field>
+
+      <div *ngIf="errors" style="color: #f44336;">
+        <div *ngFor="let error of errors">
+          <p>{{error}}</p>
+        </div>
+      </div>
+
+      <button mat-button color="accent" type="submit">Login</button>
+    </form>
+  </mat-card-content>
+</mat-card>

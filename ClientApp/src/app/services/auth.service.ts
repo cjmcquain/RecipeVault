@@ -12,9 +12,13 @@ export class AuthService {
     this.rootURL = baseUrl + 'api';
   }
 
+  loginUser(user: User) {
+    return this.http.post(this.rootURL + '/Users/AuthUser', user);
+  }
 
   logout() {
-
+    sessionStorage.removeItem('currentUser');
+    location.replace('/');
   }
 
   registerUser(newUser: User) {
