@@ -33,8 +33,7 @@ export class LoginComponent {
         if (res) {
           this.authService.currentUser = res as User;
           sessionStorage.setItem('currentUser', JSON.stringify(this.authService.currentUser));
-          location.replace('/');
-          console.log(this.authService.currentUser);
+          this.router.navigate(['']);
         } else {
           this.errors.push('Invalid username and/or password');
         }
