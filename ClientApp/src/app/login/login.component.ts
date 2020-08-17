@@ -35,11 +35,13 @@ export class LoginComponent {
           sessionStorage.setItem('currentUser', JSON.stringify(this.authService.currentUser));
           location.replace('/');
           console.log(this.authService.currentUser);
+        } else {
+          this.errors.push('Invalid username and/or password');
         }
       });
     }
     catch {
-      this.errors.push('Invalid username and/or password');
+      this.errors.push('There was an issue logging in. Please try again later.');
     }
   }
 }

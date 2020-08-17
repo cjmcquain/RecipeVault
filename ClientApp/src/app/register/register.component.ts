@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent {
   confirmedPassword: string;
   errors: string[] = [];
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private _snackBar: MatSnackBar) {
 
   }
 
@@ -49,6 +50,8 @@ export class RegisterComponent {
           this.authService.registerUser(this.newUser).subscribe(res => {
             if (res) {
               console.log('User successfully created.');
+              this._snackBar.open('You have successfully registered. You are now logged in.', 'Dismiss', { duration: 2000, });
+              location.replace('/');
             } else {
               console.log('Error creating user');
             }
