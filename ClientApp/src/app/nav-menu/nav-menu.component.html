@@ -6,7 +6,9 @@
     </div>
 
     <div class="nav-links">
-      <a mat-button [routerLinkActive]="['link-active']" [routerLink]="['/']">Home</a>
+      <a *ngIf="currentUser" mat-button [routerLinkActive]="['link-active']" [routerLink]="['/dashboard']">Home</a>
+      <a *ngIf="currentUser" mat-button [routerLink]="['/recipes']">Recipes</a>
+      <a *ngIf="currentUser" mat-button [routerLink]="['/add-recipe']">Add Recipe</a>
       <a *ngIf="!currentUser" mat-button [routerLink]="['/register']">Register</a>
       <a *ngIf="!currentUser" mat-button [routerLink]="['/login']">Login</a>
       <a *ngIf="currentUser" mat-button (click)="logout()">Logout</a>

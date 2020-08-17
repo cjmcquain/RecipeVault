@@ -20,6 +20,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     CounterComponent,
     FetchDataComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AddRecipeComponent,
+    RecipeListComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,7 +46,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'add-recipe', component: AddRecipeComponent },
+      { path: 'recipes', component: RecipeListComponent },
+      { path: 'dashboard', component: DashboardComponent }
     ]),
     BrowserAnimationsModule,
     MatCardModule,
