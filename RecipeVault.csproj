@@ -37,11 +37,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\models\category.ts" />
+    <None Remove="ClientApp\src\app\models\recipe.ts" />
     <None Remove="ClientApp\src\app\models\user.ts" />
+    <None Remove="ClientApp\src\app\services\recipe.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\category.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\recipe.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\user.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\recipe.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
