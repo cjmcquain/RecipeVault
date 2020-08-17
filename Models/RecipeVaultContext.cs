@@ -18,5 +18,7 @@ namespace RecipeVault.Models
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
