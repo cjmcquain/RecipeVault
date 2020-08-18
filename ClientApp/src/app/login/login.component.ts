@@ -21,7 +21,7 @@ export class LoginComponent {
 
   ngOnInit() {
     this.user = {
-      userId: 0,
+      userID: 0,
       username: '',
       password: '',
     }
@@ -33,7 +33,7 @@ export class LoginComponent {
         if (res) {
           this.authService.currentUser = res as User;
           sessionStorage.setItem('currentUser', JSON.stringify(this.authService.currentUser));
-          this.router.navigate(['']);
+          location.replace('/');
         } else {
           this.errors.push('Invalid username and/or password');
         }

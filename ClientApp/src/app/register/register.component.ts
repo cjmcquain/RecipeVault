@@ -23,7 +23,7 @@ export class RegisterComponent {
 
   ngOnInit() {
     this.newUser = {
-      userId: 0,
+      userID: 0,
       username: '',
       password: '',
     }
@@ -49,11 +49,11 @@ export class RegisterComponent {
         } else {
           this.authService.registerUser(this.newUser).subscribe(res => {
             if (res) {
-              console.log('User successfully created.');
+              sessionStorage.setItem('currentUser', JSON.stringify(res));
               this._snackBar.open('You have successfully registered. You are now logged in.', 'Dismiss', { duration: 2000, });
               location.replace('/');
             } else {
-              console.log('Error creating user');
+              this.errors.push('Error creating user');
             }
           });
         }
