@@ -30,6 +30,10 @@ export class AuthService {
     return this.http.post(this.rootURL + '/Profiles', newProfile);
   }
 
+  getProfileByUserId(userId: number) {
+    return this.http.get(this.rootURL + '/Profiles/GetProfileByUserId/' + userId);
+  }
+
   getUserByUsername(username: string) {
     return this.http.get(this.rootURL + '/Users/GetUserByUsername/' + username);
   }

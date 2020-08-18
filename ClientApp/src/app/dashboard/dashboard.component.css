@@ -1,1 +1,11 @@
-﻿
+.small-card {
+    width: 50%;
+}
+
+
+.user-photo {
+  border-radius: 100%;
+  height: 75px;
+  width: 75px;
+  float: right;
+}

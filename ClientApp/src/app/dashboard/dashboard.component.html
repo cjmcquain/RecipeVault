@@ -1,1 +1,13 @@
-﻿<div style="border: 1px solid red">dashboard Component</div>
+<mat-card>
+  <mat-card-title>Your Dashboard</mat-card-title>
+  <br /><br />
+        <mat-card class="small-card" *ngIf="currentProfile">
+          <mat-card-title>Your Profile</mat-card-title>
+          <img class="img-fluid user-photo" src="{{ currentProfile.profilePictureURL ? currentProfile.profilePictureURL : 'assets/images/user-placeholder.png'}}" />
+          <b>First Name: </b> {{ currentProfile.firstName }}<br />
+          <b>Last Name: </b> {{ currentProfile.lastName }}<br />
+          <b>Profile Photo URL: </b> {{ currentProfile.profilePictureURL ? currentProfile.profilePictureURL : 'No Photo'}}<br /><br />
+
+          <button mat-button color="accent" [routerLink]="['/edit-profile']">Edit Profile</button>
+        </mat-card>
+</mat-card>

@@ -41,6 +41,18 @@ namespace RecipeVault.Controllers
             return profile;
         }
 
+        // GET: api/Profiles/GetProfileByUserId/5
+        [HttpGet("GetProfileByUserId/{id}")]
+        public async Task<ActionResult<Profile>> GetProfileByUserId(int id)
+        {
+            var profile = await _context.Profiles.FirstAsync(row => row.UserID == id);
+            if (profile == null)
+            {
+                return NotFound();
+            }
+            return profile;
+        }
+
         // PUT: api/Profiles/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
