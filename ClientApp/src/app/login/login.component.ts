@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 /** login component*/
 export class LoginComponent {
-  private user: User;
+  user: User;
   errors: string[] = [];
 
   /** login ctor */
