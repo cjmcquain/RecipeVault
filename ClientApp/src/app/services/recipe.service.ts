@@ -19,6 +19,10 @@ export class RecipeService {
     return this.http.post(this.rootURL + '/Recipes', recipe);
   }
 
+  getRecipeById(id: number) {
+    return this.http.get(this.rootURL + '/Recipes/' + id);
+  }
+
   getRecipes() {
     return this.http.get(this.rootURL + '/Recipes');
   }
