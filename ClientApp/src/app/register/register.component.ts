@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Profile } from '../models/profile';
 
 @Component({
     selector: 'app-register',
@@ -14,6 +15,7 @@ export class RegisterComponent {
 /** register ctor */
 
   newUser: User;
+  newProfile: Profile;
   confirmedPassword: string;
   errors: string[] = [];
 
@@ -28,6 +30,13 @@ export class RegisterComponent {
       password: '',
     }
     this.confirmedPassword = '';
+    this.newProfile = {
+      profileID: 0,
+      userID: 0,
+      firstName: '',
+      lastName: '',
+      profilePictureUrl: ''
+    }
   }
 
   registerUser() {
@@ -49,6 +58,11 @@ export class RegisterComponent {
         } else {
           this.authService.registerUser(this.newUser).subscribe(res => {
             if (res) {
+              this.newUser = res as User;
+              this.newProfile.userID = this.newUser.userID;
+              this.authService.registerProfile(this.newProfile).subscribe(res => {
+
+              });
               sessionStorage.setItem('currentUser', JSON.stringify(res));
               this._snackBar.open('You have successfully registered. You are now logged in.', 'Dismiss', { duration: 2000, });
               location.replace('/');

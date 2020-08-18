@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
+import { Profile } from '../models/profile';
 
 @Injectable()
 export class AuthService {
@@ -23,6 +24,10 @@ export class AuthService {
 
   registerUser(newUser: User) {
     return this.http.post(this.rootURL + '/Users', newUser);
+  }
+
+  registerProfile(newProfile: Profile) {
+    return this.http.post(this.rootURL + '/Profiles', newProfile);
   }
 
   getUserByUsername(username: string) {
