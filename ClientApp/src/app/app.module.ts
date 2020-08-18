@@ -25,6 +25,7 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatTableModule } from '@angular/material/table';
     LoginComponent,
     AddRecipeComponent,
     RecipeListComponent,
-    DashboardComponent
+    DashboardComponent,
+    RecipeDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,7 +53,8 @@ import { MatTableModule } from '@angular/material/table';
       { path: 'login', component: LoginComponent },
       { path: 'add-recipe', component: AddRecipeComponent },
       { path: 'recipes', component: RecipeListComponent },
-      { path: 'dashboard', component: DashboardComponent }
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'recipe-detail/:id', component: RecipeDetailComponent }
     ]),
     BrowserAnimationsModule,
     MatCardModule,
