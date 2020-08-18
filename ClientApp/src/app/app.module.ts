@@ -24,6 +24,7 @@ import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatSnackBarModule,
     MatSelectModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

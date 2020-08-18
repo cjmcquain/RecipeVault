@@ -18,4 +18,8 @@ export class RecipeService {
   addRecipe(recipe: Recipe) {
     return this.http.post(this.rootURL + '/Recipes', recipe);
   }
+
+  getRecipes() {
+    return this.http.get(this.rootURL + '/Recipes');
+  }
 }

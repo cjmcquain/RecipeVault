@@ -1,1 +1,29 @@
-﻿<div style="border: 1px solid red">recipe-list Component</div>
+<div class="mat-typography" *ngIf="recipes">
+  <mat-card>
+    <mat-card-title>Recipes</mat-card-title>
+
+    <p *ngIf="recipesDataSource.data.length == 0" style="margin-top:1em">There are currently no recipes.</p>
+    <br *ngIf="recipesDataSource.data.length > 0" />
+
+    <mat-table #table *ngIf="recipesDataSource.data.length > 0" class="mat-elevation-z8" [dataSource]="recipesDataSource">
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+        <mat-cell *matCellDef="let recipe"><a [routerLink]="['/recipe-detail', recipe.recipeID]">{{recipe.title}}</a></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="ingredients">
+        <mat-header-cell *matHeaderCellDef>Ingredients</mat-header-cell>
+        <mat-cell *matCellDef="let recipe">{{recipe.ingredients}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="directions">
+        <mat-header-cell *matHeaderCellDef>Directions</mat-header-cell>
+        <mat-cell *matCellDef="let recipe">{{recipe.directions}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let recipe; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  </mat-card>
+</div>
