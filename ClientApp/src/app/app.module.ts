@@ -26,6 +26,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
     AddRecipeComponent,
     RecipeListComponent,
     DashboardComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    SidenavListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -66,7 +68,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
     MatFormFieldModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
