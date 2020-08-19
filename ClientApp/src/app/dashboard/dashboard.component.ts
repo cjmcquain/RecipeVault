@@ -4,6 +4,7 @@ import { Profile } from '../models/profile';
 import { User } from '../models/user';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recipe';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-dashboard',
@@ -18,7 +19,7 @@ export class DashboardComponent {
   myRecipes: Recipe[] = [];
 
   /** dashboard ctor */
-  constructor(private authService: AuthService, private recipeService: RecipeService) {
+  constructor(private authService: AuthService, private recipeService: RecipeService, private _snackBar: MatSnackBar) {
     this.currentUser = new User;
   }
 
@@ -33,5 +34,16 @@ export class DashboardComponent {
       }
     });
     
+  }
+
+  deleteRecipe(recipeId: number) {
+    this.recipeService.deleteRecipe(recipeId).subscribe(res => {
+      if (res) {
+        this._snackBar.open('You have successfully deleted the recipe.', 'Dismiss', { duration: 2000 });
+        this.recipeService.getRecipesByUserId(this.currentUser.userID).subscribe(res => {
+          this.myRecipes = res as Recipe[];
+        })
+      }
+    });
   }
 }

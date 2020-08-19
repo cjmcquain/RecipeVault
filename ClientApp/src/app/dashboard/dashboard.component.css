@@ -9,3 +9,8 @@
   width: 75px;
   float: right;
 }
+
+ td.text-left {
+    padding-left: 0;
+    padding-right: 0;
+}

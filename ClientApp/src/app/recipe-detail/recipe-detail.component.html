@@ -1,6 +1,8 @@
 <mat-card *ngIf="currentRecipe">
   <mat-card-title>{{currentRecipe.title}}</mat-card-title>
-  <a *ngIf="ownsRecipe" [routerLink]="['/edit-recipe', currentRecipe.recipeID]" mat-raised-button color="accent">Edit Recipe</a><br /><br />
+  <a *ngIf="ownsRecipe" [routerLink]="['/edit-recipe', currentRecipe.recipeID]" mat-raised-button color="accent">Edit Recipe</a>&nbsp;&nbsp;
+  <a *ngIf="ownsRecipe" (click)="deleteRecipe(currentRecipe.recipeID)" mat-raised-button color="primary">Delete Recipe</a>
+  <br /><br />
   <img *ngIf="currentRecipe.pictureURL" src="{{currentRecipe.pictureURL}}" height="200" width="200" />
   <mat-card-subtitle *ngIf="!currentRecipe.pictureURL">No Photo</mat-card-subtitle>
   <hr />

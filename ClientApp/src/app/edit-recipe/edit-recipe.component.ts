@@ -39,9 +39,6 @@ export class EditRecipeComponent {
         this.recipeService.getCategories().subscribe(res => {
           this.categories = res as Category[];
         })
-        console.log(this.currentUser);
-        console.log(this.currentRecipe);
-        console.log(this.currentRecipeId);
       });
     });
   }

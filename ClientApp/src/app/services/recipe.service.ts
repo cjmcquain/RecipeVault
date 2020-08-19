@@ -34,4 +34,8 @@ export class RecipeService {
   updateRecipe(recipeId: number, updatedRecipe: Recipe) {
     return this.http.put(this.rootURL + '/Recipes/' + recipeId, updatedRecipe);
   }
+
+  deleteRecipe(recipeId: number) {
+    return this.http.delete(this.rootURL + '/Recipes/' + recipeId);
+  }
 }

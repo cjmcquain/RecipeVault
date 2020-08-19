@@ -20,10 +20,12 @@
                 <tr>
                   <th>Title</th>
                   <th></th>
+                  <th></th>
                 </tr>
                 <tr *ngFor="let recipe of myRecipes">
                   <td><a [routerLink]="['/recipe-detail', recipe.recipeID]">{{recipe.title}}</a></td>
                   <td class="text-right"><a [routerLink]="['/edit-recipe', recipe.recipeID]" mat-raised-button color="accent">Edit</a></td>
+                  <td class="text-left"><a (click)="deleteRecipe(recipe.recipeID)" mat-raised-button color="primary">Delete</a></td>
                 </tr>
               </thead>
             </table>

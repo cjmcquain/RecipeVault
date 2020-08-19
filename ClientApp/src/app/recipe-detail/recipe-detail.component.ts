@@ -3,7 +3,7 @@ import { RecipeService } from '../services/recipe.service';
 import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Recipe } from '../models/recipe';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../models/user';
 
 @Component({
@@ -19,7 +19,7 @@ export class RecipeDetailComponent {
   currentUser: User;
   ownsRecipe: boolean;
   /** recipe-detail ctor */
-  constructor(private recipeService: RecipeService, private authService: AuthService, private _snackBar: MatSnackBar, private route: ActivatedRoute) {
+  constructor(private recipeService: RecipeService, private authService: AuthService, private _snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router) {
 
   }
 
@@ -39,6 +39,15 @@ export class RecipeDetailComponent {
         }
       }
 
+    });
+  }
+
+  deleteRecipe(recipeId: number) {
+    this.recipeService.deleteRecipe(recipeId).subscribe(res => {
+      if (res) {
+        this._snackBar.open('You have successfully deleted the recipe', 'Dismiss', { duration: 2000 });
+        this.router.navigate(['dashboard']);
+      }
     });
   }
 }
