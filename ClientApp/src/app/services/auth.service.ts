@@ -37,4 +37,8 @@ export class AuthService {
   getUserByUsername(username: string) {
     return this.http.get(this.rootURL + '/Users/GetUserByUsername/' + username);
   }
+
+  updateProfile(profileId: number, updatedProfile: Profile) {
+    return this.http.put(this.rootURL + '/Profiles/' + profileId, updatedProfile);
+  }
 }

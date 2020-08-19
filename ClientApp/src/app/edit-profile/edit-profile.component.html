@@ -1,1 +1,22 @@
-﻿<div style="border: 1px solid red">edit-profile Component</div>
+<mat-card>
+  <mat-card-title>Edit Profile</mat-card-title>
+  <form *ngIf="currentProfile" (submit)="updateProfile()">
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput name="firstName" #title="ngModel" [(ngModel)]="currentProfile.firstName" />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput name="lastName" #title="ngModel" [(ngModel)]="currentProfile.lastName" />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Profile Picture URL</mat-label>
+      <input matInput name="profilePictureURL" #title="ngModel" [(ngModel)]="currentProfile.profilePictureURL" />
+    </mat-form-field>
+    <br />
+    <p *ngIf="error" class="text-danger">{{error}}</p>
+    <button mat-button color="accent" type="submit">Update Profile</button>
+  </form>
+</mat-card>

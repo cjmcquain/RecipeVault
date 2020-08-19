@@ -60,7 +60,9 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
       { path: 'add-recipe', component: AddRecipeComponent },
       { path: 'recipes', component: RecipeListComponent },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'recipe-detail/:id', component: RecipeDetailComponent }
+      { path: 'recipe-detail/:id', component: RecipeDetailComponent },
+      { path: 'edit-profile', component: EditProfileComponent },
+      { path: 'edit-recipe/:id', component: EditRecipeComponent }
     ]),
     BrowserAnimationsModule,
     MatCardModule,
