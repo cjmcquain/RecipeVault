@@ -42,8 +42,8 @@ namespace RecipeVault.Controllers
         }
 
         // GET: api/Recipes/GetRecipesByUserId/5
-        [HttpGet("ByUserId/{id}")]
-        public async Task<ActionResult<IEnumerable<Recipe>>> ByUserId(int id)
+        [HttpGet("GetRecipesByUserId/{id}")]
+        public async Task<ActionResult<IEnumerable<Recipe>>> GetRecipesByUserId(int id)
         {
             var results = await _context.Recipes.Where(row => row.UserID == id).ToListAsync();
             if (results == null)
