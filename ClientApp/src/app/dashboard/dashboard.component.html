@@ -10,6 +10,9 @@
 
           <button mat-button color="accent" [routerLink]="['/edit-profile']">Edit Profile</button>
         </mat-card>
-
-        <mat-card class="small-card" *ngIf
+        <br />
+        <mat-card class="small-card" *ngIf="myRecipes">
+          <mat-card-title>My Recipes</mat-card-title>
+          <mat-card-content *ngIf="myRecipes.length == 0">You haven't created a recipe yet.</mat-card-content>
+        </mat-card>
 </mat-card>

@@ -35,7 +35,7 @@ export class LoginComponent {
           this.authService.currentUser = res as User;
           sessionStorage.setItem('currentUser', JSON.stringify(this.authService.currentUser));
           this._snackBar.open('You are being logged in now.', 'Dismiss', { duration: 2000, });
-          location.replace('/');
+          location.replace('/dashboard'); 
         } else {
           this.errors.push('Invalid username and/or password');
         }

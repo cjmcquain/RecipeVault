@@ -16,6 +16,7 @@ export class DashboardComponent {
   currentProfile: Profile;
   currentUser: User;
   myRecipes: Recipe[] = [];
+
   /** dashboard ctor */
   constructor(private authService: AuthService, private recipeService: RecipeService) {
     this.currentUser = new User;
@@ -31,6 +32,6 @@ export class DashboardComponent {
         });
       }
     });
-
+    
   }
 }
