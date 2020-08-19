@@ -41,6 +41,18 @@ namespace RecipeVault.Controllers
             return recipe;
         }
 
+        // GET: api/Recipes/GetRecipesByUserId/5
+        [HttpGet("ByUserId/{id}")]
+        public async Task<ActionResult<IEnumerable<Recipe>>> ByUserId(int id)
+        {
+            var results = await _context.Recipes.Where(row => row.UserID == id).ToListAsync();
+            if (results == null)
+            {
+                return NotFound();
+            }
+            return results;
+        }
+
         // PUT: api/Recipes/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
