@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Recipe } from '../models/recipe';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../models/user';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -15,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class RecipeDetailComponent {
   currentRecipe: Recipe;
   currentRecipeId: number;
+  currentUser: User;
   /** recipe-detail ctor */
   constructor(private recipeService: RecipeService, private authService: AuthService, private _snackBar: MatSnackBar, private route: ActivatedRoute) {
 
@@ -27,8 +29,10 @@ export class RecipeDetailComponent {
 
     this.recipeService.getRecipeById(this.currentRecipeId).subscribe(res => {
       this.currentRecipe = res as Recipe;
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
       console.log(this.currentRecipeId);
       console.log(this.currentRecipe);
+      console.log(this.currentUser);
     });
   }
 }
