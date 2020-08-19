@@ -26,4 +26,8 @@ export class RecipeService {
   getRecipes() {
     return this.http.get(this.rootURL + '/Recipes');
   }
+
+  getRecipesByUserId(id: number) {
+    return this.http.get(this.rootURL + '/Recipes/GetRecipesByUserId/' + id);
+  }
 }

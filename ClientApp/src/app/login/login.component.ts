@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
   errors: string[] = [];
 
   /** login ctor */
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private _snackBar: MatSnackBar) {
 
   }
 
@@ -33,6 +34,7 @@ export class LoginComponent {
         if (res) {
           this.authService.currentUser = res as User;
           sessionStorage.setItem('currentUser', JSON.stringify(this.authService.currentUser));
+          this._snackBar.open('You are being logged in now.', 'Dismiss', { duration: 2000, });
           location.replace('/');
         } else {
           this.errors.push('Invalid username and/or password');
