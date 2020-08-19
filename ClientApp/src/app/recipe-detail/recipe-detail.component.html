@@ -1,6 +1,7 @@
 <mat-card *ngIf="currentRecipe">
-  <h1 class="display-1">{{currentRecipe.title}}</h1>
-  <img *ngIf="currentRecipe.pictureURL" src="{{currentRecipe.pictureURL}}" height="200" width="200"/>
+  <mat-card-title>{{currentRecipe.title}}</mat-card-title>
+  <a *ngIf="ownsRecipe" [routerLink]="['/edit-recipe', currentRecipe.recipeID]" mat-raised-button color="accent">Edit Recipe</a><br /><br />
+  <img *ngIf="currentRecipe.pictureURL" src="{{currentRecipe.pictureURL}}" height="200" width="200" />
   <mat-card-subtitle *ngIf="!currentRecipe.pictureURL">No Photo</mat-card-subtitle>
   <hr />
   <h2>Ingredients</h2>

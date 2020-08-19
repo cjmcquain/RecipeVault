@@ -29,7 +29,6 @@ export class DashboardComponent {
       if (this.currentUser) {
         this.recipeService.getRecipesByUserId(this.currentUser.userID).subscribe(res => {
           this.myRecipes = res as Recipe[];
-          console.log(this.myRecipes);
         });
       }
     });

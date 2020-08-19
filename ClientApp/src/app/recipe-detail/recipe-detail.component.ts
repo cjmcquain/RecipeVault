@@ -14,9 +14,10 @@ import { User } from '../models/user';
 })
 /** recipe-detail component*/
 export class RecipeDetailComponent {
-  currentRecipe: Recipe;
+  currentRecipe: any;
   currentRecipeId: number;
   currentUser: User;
+  ownsRecipe: boolean;
   /** recipe-detail ctor */
   constructor(private recipeService: RecipeService, private authService: AuthService, private _snackBar: MatSnackBar, private route: ActivatedRoute) {
 
@@ -28,11 +29,16 @@ export class RecipeDetailComponent {
     });
 
     this.recipeService.getRecipeById(this.currentRecipeId).subscribe(res => {
-      this.currentRecipe = res as Recipe;
+      this.currentRecipe = res;
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-      console.log(this.currentRecipeId);
-      console.log(this.currentRecipe);
-      console.log(this.currentUser);
+      if (this.currentUser) {
+        if (this.currentRecipe.userID == this.currentUser.userID) {
+          this.ownsRecipe = true;
+        } else {
+          this.ownsRecipe = false;
+        }
+      }
+
     });
   }
 }
