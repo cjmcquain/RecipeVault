@@ -27,6 +27,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
     RecipeListComponent,
     DashboardComponent,
     RecipeDetailComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    EditProfileComponent,
+    EditRecipeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
