@@ -11,4 +11,19 @@
   <br />
   <h2>Directions</h2>
   <p>{{currentRecipe.directions}}</p>
+
+</mat-card>
+<br />
+<mat-card *ngIf="currentUser" style="width: 25%;">
+  <mat-card-title>Share Recipe</mat-card-title>
+  <mat-card-subtitle>Enter your friend's username to share this recipe with them.</mat-card-subtitle>
+  <form>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput value="" [(ngModel)]="sharedUsername" name="sharedUsername">
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="submitShare()">Share!</button><br />
+    <p *ngIf="message" class="text-success"><br />{{message}}</p>
+    <p *ngIf="error" class="text-danger"><br />{{error}}</p>
+  </form>
 </mat-card>

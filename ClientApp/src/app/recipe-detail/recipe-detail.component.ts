@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Recipe } from '../models/recipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../models/user';
+import { SharedRecipe } from '../models/sharedrecipe';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -18,6 +19,10 @@ export class RecipeDetailComponent {
   currentRecipeId: number;
   currentUser: User;
   ownsRecipe: boolean;
+  sharedUsername: string = '';
+  sharedRecipe: SharedRecipe;
+  error: string = '';
+  message: string = '';
   /** recipe-detail ctor */
   constructor(private recipeService: RecipeService, private authService: AuthService, private _snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router) {
 
@@ -38,7 +43,13 @@ export class RecipeDetailComponent {
           this.ownsRecipe = false;
         }
       }
-
+      this.sharedRecipe = {
+        sharedRecipeId: 0,
+        recipeId: 0,
+        toUserId: 0,
+        fromUserId: this.currentUser.userID,
+        approved: 0
+      }
     });
   }
 
@@ -49,5 +60,25 @@ export class RecipeDetailComponent {
         this.router.navigate(['dashboard']);
       }
     });
+  }
+
+  submitShare() {
+    this.authService.getUserByUsername(this.sharedUsername).subscribe(res => {
+      if (res) {
+        var sharedUser = res as User;
+        this.sharedRecipe.recipeId = this.currentRecipeId;
+        this.sharedRecipe.toUserId = sharedUser.userID;
+        this.recipeService.sendSharedRecipe(this.sharedRecipe).subscribe(res => {
+          if (res) {
+            this.error = '';
+            this.message = 'You have successfully shared the recipe.';
+            this.sharedUsername = '';
+          }
+        });
+      } else {
+        this.error = 'Username does not exist. Please enter valid username.';
+      }
+    });
+
   }
 }

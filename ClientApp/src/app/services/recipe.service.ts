@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../models/recipe';
+import { SharedRecipe } from '../models/sharedrecipe';
 
 
 @Injectable()
@@ -37,5 +38,9 @@ export class RecipeService {
 
   deleteRecipe(recipeId: number) {
     return this.http.delete(this.rootURL + '/Recipes/' + recipeId);
+  }
+
+  sendSharedRecipe(sharedRecipe: SharedRecipe) {
+    return this.http.post(this.rootURL + '/SharedRecipes', sharedRecipe);
   }
 }
