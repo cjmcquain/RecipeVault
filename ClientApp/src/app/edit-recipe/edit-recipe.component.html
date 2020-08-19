@@ -1,1 +1,50 @@
-﻿<div style="border: 1px solid red">edit-recipe Component</div>
+<div *ngIf="categories" class="mat-typography d-block">
+  <mat-card *ngIf="currentRecipe">
+    <mat-card-title>Edit Recipe</mat-card-title><br />
+    <mat-card-content>
+      <form #form="ngForm" autocomplete="off" (submit)="updateRecipe()">
+        <mat-form-field>
+          <mat-label>Recipe Title</mat-label>
+          <input matInput name="title" #title="ngModel" [(ngModel)]="currentRecipe.title" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Ingredients</mat-label>
+          <input matInput name="ingredients" #ingredients="ngModel" [(ngModel)]="currentRecipe.ingredients" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Directions</mat-label>
+          <textarea rows="25" style="resize: none;" matInput name="directions" #Title="ngModel" [(ngModel)]="currentRecipe.directions" required></textarea>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Category</mat-label>
+          <mat-select *ngIf="categories" name="CategoryId" #categoryId="ngModel" [(ngModel)]="currentRecipe.categoryId" required>
+            <mat-option *ngFor="let category of categories" [value]="category.categoryId">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Recipe Photo URL</mat-label>
+          <input matInput name="pictureUrl" #pictureUrl="ngModel" [(ngModel)]="currentRecipe.pictureURL" />
+        </mat-form-field>
+        <br />
+        <div *ngIf="message" class="text-success">
+          <p>{{message}}</p>
+        </div>
+        <div *ngIf="errors" style="color: #f44336;">
+          <br />
+          <div *ngFor="let error of errors">
+            <p>{{error}}</p>
+          </div>
+          <br />
+        </div>
+        <button mat-button color="accent" type="submit">Update Recipe</button> 
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+</div>

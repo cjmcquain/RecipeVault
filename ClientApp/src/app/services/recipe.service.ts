@@ -30,4 +30,8 @@ export class RecipeService {
   getRecipesByUserId(id: number) {
     return this.http.get(this.rootURL + '/Recipes/GetRecipesByUserId/' + id);
   }
+
+  updateRecipe(recipeId: number, updatedRecipe: Recipe) {
+    return this.http.put(this.rootURL + '/Recipes/' + recipeId, updatedRecipe);
+  }
 }
