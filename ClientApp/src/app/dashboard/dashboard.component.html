@@ -3,16 +3,29 @@
   <br /><br />
         <mat-card class="small-card" *ngIf="currentProfile">
           <mat-card-title>Your Profile</mat-card-title>
-          <img class="img-fluid user-photo" src="{{ currentProfile.profilePictureURL ? currentProfile.profilePictureURL : 'assets/images/user-placeholder.png'}}" />
-          <b>First Name: </b> {{ currentProfile.firstName }}<br />
-          <b>Last Name: </b> {{ currentProfile.lastName }}<br />
-          <b>Profile Photo URL: </b> {{ currentProfile.profilePictureURL ? currentProfile.profilePictureURL : 'No Photo'}}<br /><br />
-
-          <button mat-button color="accent" [routerLink]="['/edit-profile']">Edit Profile</button>
+          <mat-card-content>
+            <img class="img-fluid user-photo" src="{{ currentProfile.profilePictureURL ? currentProfile.profilePictureURL : 'assets/images/user-placeholder.png'}}" />
+            <b>First Name: </b> {{ currentProfile.firstName }}<br />
+            <b>Last Name: </b> {{ currentProfile.lastName }}<br />
+            <b>Profile Photo URL: </b> {{ currentProfile.profilePictureURL ? currentProfile.profilePictureURL : 'No Photo'}}<br /><br />
+            <button mat-button color="accent" [routerLink]="['/edit-profile']">Edit Profile</button>
+          </mat-card-content>
         </mat-card>
         <br />
         <mat-card class="small-card" *ngIf="myRecipes">
           <mat-card-title>My Recipes</mat-card-title>
           <mat-card-content *ngIf="myRecipes.length == 0">You haven't created a recipe yet.</mat-card-content>
+            <table class="table table-striped" *ngIf="myRecipes.length > 0">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th></th>
+                </tr>
+                <tr *ngFor="let recipe of myRecipes">
+                  <td>{{recipe.title}}</td>
+                  <td class="text-right"><a [routerLink]="['/edit-recipe', recipe.recipeID]" mat-raised-button color="accent">Edit</a></td>
+                </tr>
+              </thead>
+            </table>
         </mat-card>
 </mat-card>
