@@ -43,4 +43,24 @@ export class RecipeService {
   sendSharedRecipe(sharedRecipe: SharedRecipe) {
     return this.http.post(this.rootURL + '/SharedRecipes', sharedRecipe);
   }
+
+  getSharedRecipeById(sharedRecipeId: number) {
+    return this.http.get(this.rootURL + '/SharedRecipes/' + sharedRecipeId);
+  }
+
+  getPendingRecipes(userID: number) {
+    return this.http.get(this.rootURL + '/SharedRecipes/Pending/' + userID);
+  }
+
+  getApprovedRecipes(userID: number) {
+    return this.http.get(this.rootURL + '/SharedRecipes/Approved/' + userID);
+  }
+
+  approveShare(sharedRecipeId: number, sharedRecipe: SharedRecipe) {
+    return this.http.put(this.rootURL + '/SharedRecipes/' + sharedRecipeId, sharedRecipe);
+  }
+
+  denyShare(sharedRecipeId: number) {
+    return this.http.delete(this.rootURL + '/SharedRecipes/' + sharedRecipeId);
+  }
 }

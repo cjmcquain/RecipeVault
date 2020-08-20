@@ -41,6 +41,30 @@ namespace RecipeVault.Controllers
             return sharedRecipe;
         }
 
+        // GET: api/SharedRecipes/Pending
+        [HttpGet("Pending/{id}")]
+        public async Task<ActionResult<IEnumerable<SharedRecipe>>> GetPendingRecipes(int id)
+        {
+            var recipes = await _context.SharedRecipes.Where(row => row.ToUserId == id && row.Approved == 0).ToListAsync();
+            if (recipes == null)
+            {
+                return NotFound();
+            }
+            return recipes;
+        }
+
+        // GET: api/SharedRecipes/Approved
+        [HttpGet("Approved/{id}")]
+        public async Task<ActionResult<IEnumerable<SharedRecipe>>> GetApprovedRecipes(int id)
+        {
+            var recipes = await _context.SharedRecipes.Where(row => row.ToUserId == id && row.Approved == 1).ToListAsync();
+            if (recipes == null)
+            {
+                return NotFound();
+            }
+            return recipes;
+        }
+
         // PUT: api/SharedRecipes/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
