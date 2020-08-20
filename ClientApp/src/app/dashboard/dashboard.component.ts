@@ -92,4 +92,18 @@ export class DashboardComponent {
       }
     }
   }
+
+  denyShare(recipeId: number) {
+    for (var i = 0; i < this.pendingRecipes.length; i++) {
+      if (this.pendingRecipes[i].recipeId == recipeId) {
+        this.recipeService.getSharedRecipeById(this.pendingRecipes[i].sharedRecipeId).subscribe(res => {
+          var result = res as SharedRecipe;
+          this.recipeService.denyShare(result.sharedRecipeId).subscribe(res => {
+            this._snackBar.open('You have denied the shared recipe invitation.', 'Dismiss', { duration: 2000 });
+            this.reloadShares(this.currentUser.userID);
+          });
+        });
+      }
+    }
+  }
 }
