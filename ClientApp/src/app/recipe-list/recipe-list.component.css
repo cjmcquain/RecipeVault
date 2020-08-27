@@ -1,1 +1,5 @@
-﻿
+@media (max-width: 650px) {
+    mat-cell {
+        padding: 1rem;
+    }
+}
