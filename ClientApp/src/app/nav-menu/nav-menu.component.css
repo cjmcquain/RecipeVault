@@ -34,3 +34,14 @@ a {
 mat-toolbar {
     margin-bottom: 1rem;
 }
+
+
+@media (max-width: 450px) {
+    a.navbar-brand {
+        font-size: 1rem;
+    }
+
+    nav a {
+        font-size: 0.5rem;
+    }
+}
