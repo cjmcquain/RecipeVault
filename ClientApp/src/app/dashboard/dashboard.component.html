@@ -12,64 +12,72 @@
     </mat-card-content>
   </mat-card>
   <br />
-  <mat-card style="width: 50%;" *ngIf="myRecipes">
-    <mat-card-title>My Recipes</mat-card-title>
-    <mat-card-content *ngIf="myRecipes.length == 0">You haven't created a recipe yet.</mat-card-content>
-    <table class="table table-striped" *ngIf="myRecipes.length > 0">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th></th>
-          <th></th>
-        </tr>
-        <tr *ngFor="let recipe of myRecipes">
-          <td><a [routerLink]="['/recipe-detail', recipe.recipeID]">{{recipe.title}}</a></td>
-          <td class="text-right"><a [routerLink]="['/edit-recipe', recipe.recipeID]" mat-raised-button color="accent">Edit</a></td>
-          <td class="text-left"><a (click)="deleteRecipe(recipe.recipeID)" mat-raised-button color="primary">Delete</a></td>
-        </tr>
-      </thead>
-    </table>
-  </mat-card>
+  <div class="row">
+    <div class="col-12">
+      <mat-card *ngIf="myRecipes">
+        <mat-card-title>My Recipes</mat-card-title>
+        <mat-card-content *ngIf="myRecipes.length == 0">You haven't created a recipe yet.</mat-card-content>
+        <table class="table table-striped" *ngIf="myRecipes.length > 0">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let recipe of myRecipes">
+              <td><a [routerLink]="['/recipe-detail', recipe.recipeID]">{{recipe.title}}</a></td>
+              <td class="text-right"><a [routerLink]="['/edit-recipe', recipe.recipeID]" mat-raised-button color="accent">Edit</a></td>
+              <td class="text-left"><a (click)="deleteRecipe(recipe.recipeID)" mat-raised-button color="primary">Delete</a></td>
+            </tr>
+          </thead>
+        </table>
+      </mat-card>
+    </div>
+  </div>
   <br />
 
   <div class="row">
-    <mat-card style="width: 50%;">
-      <mat-card-title>Pending Shared Recipe Invitations</mat-card-title>
-      <mat-card-subtitle *ngIf="pendingRecipes.length == 0">There are no pending approvals for shared recipes.</mat-card-subtitle>
-      <table *ngIf="pendingRecipes.length > 0" class="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Approve</th>
-            <th>Deny</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let recipe of pendingRecipesList">
-            <td><a [routerLink]="['/recipe-detail', recipe.recipeID]">{{recipe.title}}</a></td>
-            <td><button mat-button class="text-success" (click)="approveShare(recipe.recipeID)">Approve</button></td>
-            <td><button mat-button class="text-danger" (click)="denyShare(recipe.recipeID)">Deny</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </mat-card>
+    <div class="col-12 col-md-6">
+      <mat-card> 
+        <mat-card-title>Pending Shared Recipe Invitations</mat-card-title>
+        <mat-card-subtitle *ngIf="pendingRecipes.length == 0">There are no pending approvals for shared recipes.</mat-card-subtitle>
+        <table *ngIf="pendingRecipes.length > 0" class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Approve</th>
+              <th>Deny</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let recipe of pendingRecipesList">
+              <td><a [routerLink]="['/recipe-detail', recipe.recipeID]">{{recipe.title}}</a></td>
+              <td><button mat-button class="text-success" (click)="approveShare(recipe.recipeID)">Approve</button></td>
+              <td><button mat-button class="text-danger" (click)="denyShare(recipe.recipeID)">Deny</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+    </div>
 
-    <mat-card style="width: 50%;">
-      <mat-card-title>Approved Shared Recipes</mat-card-title>
-      <mat-card-subtitle *ngIf="approvedRecipes.length == 0">There are no approved shared recipes.</mat-card-subtitle>
-      <table *ngIf="approvedRecipes.length > 0" class="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let recipe of approvedRecipesList">
-            <td><a [routerLink]="['/recipe-detail', recipe.recipeID]">{{recipe.title}}</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </mat-card>
+    <div class="col-12 col-md-6 mt-2 mt-md-0">
+      <mat-card>
+        <mat-card-title>Approved Shared Recipes</mat-card-title>
+        <mat-card-subtitle *ngIf="approvedRecipes.length == 0">There are no approved shared recipes.</mat-card-subtitle>
+        <table *ngIf="approvedRecipes.length > 0" class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let recipe of approvedRecipesList">
+              <td><a [routerLink]="['/recipe-detail', recipe.recipeID]">{{recipe.title}}</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+    </div>
   </div>
 
   
