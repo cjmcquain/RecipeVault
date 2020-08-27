@@ -6,3 +6,9 @@ mat-card {
 .full-width {
     width: 100%;
 }
+
+@media (max-width: 450px) {
+    mat-card {
+        width: 100%;
+    }
+}
